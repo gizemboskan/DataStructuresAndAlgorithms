@@ -74,7 +74,7 @@ struct LinkedList<Value> {
         var prev = head
         var current = head
         
-        while  let next = current.next {
+        while let next = current.next {
             prev = current
             current = next
         }
