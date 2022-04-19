@@ -70,17 +70,17 @@ func printLinkedList(_ head: Node?) {
     print(result)
 }
 
-// Brute force solution O(n^2)
-func findMerge(headA: Node?, headB: Node?) -> Int? { // O(n^2)
+// Brute force solution: O(n^2)
+func findMerge(headA: Node?, headB: Node?) -> Int? { // O(m * n)
     
-    let lenghtA = length(headA) // O(n)
-    let lenghtB = length(headB) // O(n)
+    let m = length(headA) // O(m)
+    let n = length(headB) // O(n)
     
     var currentA = headA
     
-    for _ in 0...lenghtA - 1 { // O(n)
+    for _ in 0...m - 1 { // O(m)
         var currentB = headB
-        for _ in 0...lenghtB - 1 { // O(n)
+        for _ in 0...n - 1 { // O(n)
             let A = currentA?.data
             let B = currentB?.data
             if A == B {
@@ -93,23 +93,23 @@ func findMerge(headA: Node?, headB: Node?) -> Int? { // O(n^2)
     return nil
 }
 
-// solution by caring space - time
-func findMergeSpaceTime(headA: Node?, headB: Node?) -> Int? {
+// solution by caring space - time: O(m + n)
+func findMergeSpaceTime(headA: Node?, headB: Node?) -> Int? {  // O(2m + 2n) -> O(m + n)
     // Create a dict of all nodes of B
     // use it to loop up each element of A
-    let lenghtA = length(headA) // O(n)
-    let lenghtB = length(headB) // O(n)
+    let m = length(headA) // O(m)
+    let n = length(headB) // O(n)
     
     var dict = [Int? : Bool]()
     var currentB = headB
-    for _ in 0...lenghtB - 1 { // O(n)
+    for _ in 0...n - 1 { // O(n)
         let B = currentB?.data
         dict[B] = true
         currentB = currentB?.next
     }
     
     var currentA = headA
-    for _ in 0...lenghtA - 1 { // O(n)
+    for _ in 0...m - 1 { // O(m)
         let A = currentA?.data
         if dict[A] == true {
             return A
@@ -120,32 +120,32 @@ func findMergeSpaceTime(headA: Node?, headB: Node?) -> Int? {
     return nil
 }
 
-func findMergeInsight(headA: Node?, headB: Node?) -> Int? { // O(n)
+func findMergeInsight(headA: Node?, headB: Node?) -> Int? { // O(m + n)
     // figure out which is longer
     // swap if necessary
     
     // calculate d
     // walk d for longer
     // walk remainder for both
-    let lenghtA = length(headA) // O(n)
-    let lenghtB = length(headB) // O(n)
+    let m = length(headA) // O(m)
+    let n = length(headB) // O(n)
     
     var currentA = headA
     var currentB = headB
     
-    if lenghtB > lenghtA {
+    if n > m {
         let temp = currentA
         currentA = currentB
         currentB = temp
     }
     
-    let d = abs(lenghtA - lenghtB)
+    let d = abs(m - n)
     
-    for _ in 1...d { // O(n)
+    for _ in 1...d { // O(n) 
         currentA = currentA?.next
     }
     
-    for _ in 1...lenghtB - 1 { // O(n)
+    for _ in 1...n - 1 { // O(n)
         let A = currentA?.data
         let B = currentB?.data
         
@@ -188,7 +188,6 @@ findMergeInsight(headA: node10, headB: node1)
      \_____/
  
  */
-
 
 func hasCycle(first: Node) -> Bool {
     
