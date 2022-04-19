@@ -46,8 +46,6 @@ length(node1) // 6
 
 // MARK: - Q2
 
-import UIKit
-
 /*
  Find Merge Point of Two Lists
  
